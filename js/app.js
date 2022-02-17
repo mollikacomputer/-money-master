@@ -16,13 +16,13 @@
             if(isNaN(savingAmount)){
                 document.getElementById('errer-sms').innerText = ' SAVING FIELD Enter only  number only.';
             }else{
-                document.getElementById('errer-sms').innerText = ' ';
+                document.getElementById('success-sms').innerText = ' SAVING Field Looks Good ';
             }
             // saving amount condition
             if(savingAmount > balance){
                 document.getElementById('errer-sms').innerText = ' SAVING Amount is not bigger than balance';
             }else{
-                document.getElementById('errer-sms').innerText = ' ';
+                document.getElementById('success-sms').innerText = ' SAVING Looks Good ';
             }
             return savingAmount; 
     }
@@ -32,22 +32,25 @@
         const income = getInputNumber('income');
         //expenses amount
         const food = getInputNumber('food');
+        const clothes = getInputNumber('clothes');
+        const rent = getInputNumber('rent');
+        
         if(isNaN(food)){
             document.getElementById('errer-sms').innerText = ' Check FOOD field Enter number only.';
         }else{
-            document.getElementById('errer-sms').innerText = ' ';
+            document.getElementById('success-sms').innerText = 'Food Looks Good';
         }
-        const rent = getInputNumber('rent');
+       
         if(isNaN(rent)){
             document.getElementById('errer-sms').innerText = ' Check RENT field Enter number only.';
         }else{
-            document.getElementById('errer-sms').innerText = ' ';
+            document.getElementById('success-sms').innerText = 'Rent Looks Good';
         }
-        const clothes = getInputNumber('clothes');
+       
         if(isNaN(clothes)){
             document.getElementById('errer-sms').innerText = ' Check CLOTHES field Enter number only.';
         }else{
-            document.getElementById('errer-sms').innerText = ' ';
+            document.getElementById('success-sms').innerText = 'Clothes Looks Good';
         }
 
         // total expenses
@@ -60,7 +63,12 @@
         const balanceField = document.getElementById('balance');
         let balance = balanceField.innerText;
         balance = parseInt(income) - parseInt(totalExpenses);
-        balanceField.innerText = balance;
+        
+        if(balance>0){
+            balanceField.innerText = balance;
+        }else{
+            balanceField.innerText = 0;
+        }
 
     })
     document.getElementById('save-button').addEventListener('click', function(){
