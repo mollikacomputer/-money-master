@@ -7,11 +7,12 @@
     // saving percentence
     function getSaving(){
         const balanceField = document.getElementById('balance');
-        let balance = balanceField.innerText;
-        const saveAmount = getInputNumber('saving');
-        const save = saveAmount.value;
-        const remainingBalance = balance / save;
-        return remainingBalance;
+        let balance = parseInt(balanceField.innerText);
+        const save = getInputNumber('saving');
+        let savingAmount = (balance /100)* save;
+        let savingAmountField = document.getElementById('saving-amount-field');
+            savingAmountField.innerText = savingAmount;
+            return savingAmount;
     }
 
     document.getElementById('calculate-button').addEventListener('click', function(){
@@ -39,8 +40,14 @@
     })
     document.getElementById('save-button').addEventListener('click', function(){
         //remaining balance
-        const remainingBalanceField = document.getElementById('remaining-balance-field');
-        remainingBalanceField.innerText = getSaving();
         
+        let savingAmount = parseInt(getSaving());
+        const balanceText = document.getElementById('balance').innerText;
+        const balance = parseInt(balanceText);
+
+        const remainingBalanceField = document.getElementById('remaining-balance-field');
+        const remainingBalance = balance - savingAmount;
+        remainingBalanceField.innerText = remainingBalance;
+
     })
 
