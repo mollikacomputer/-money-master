@@ -18,20 +18,18 @@
             }else{
                 document.getElementById('errer-sms').innerText = ' ';
             }
-            return savingAmount;
-            
+            // saving amount condition
+            if(savingAmount > balance){
+                document.getElementById('errer-sms').innerText = ' SAVING Amount is not bigger than balance';
+            }else{
+                document.getElementById('errer-sms').innerText = ' ';
+            }
+            return savingAmount; 
     }
 
     document.getElementById('calculate-button').addEventListener('click', function(){
         // income amount
         const income = getInputNumber('income');
-    /*     
-        if(isNaN(income)){
-            console.log('please Enter number');
-        }else{
-            console.log(income);
-        }
- */
         //expenses amount
         const food = getInputNumber('food');
         if(isNaN(food)){
@@ -51,9 +49,6 @@
         }else{
             document.getElementById('errer-sms').innerText = ' ';
         }
-        
-       
-
 
         // total expenses
         const totalExpenses = food + rent + clothes;
@@ -62,7 +57,6 @@
         totalExpensesField.innerText = parseInt(totalExpenses);
 
         // balance after expenses
-        
         const balanceField = document.getElementById('balance');
         let balance = balanceField.innerText;
         balance = parseInt(income) - parseInt(totalExpenses);
@@ -78,7 +72,12 @@
 
         const remainingBalanceField = document.getElementById('remaining-balance-field');
         const remainingBalance = balance - savingAmount;
-        remainingBalanceField.innerText = remainingBalance;
+        if(remainingBalance<0){
+            remainingBalanceField.innerText = 0;
+        }else{
+            remainingBalanceField.innerText = remainingBalance;
+        }
+       
 
     })
 
